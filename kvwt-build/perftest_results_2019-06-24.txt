@@ -1,0 +1,165 @@
+$ >perftest_wt_mem.exe
+Usage:
+perftest_wt_mem numrows_total numrows_per_txn numthreads
+
+$ >perftest_wt_mem.exe 1000000 10000 1
+perftest_wt_me m  numrows_total=1000000 numrows_per_txn=10000 numthreads=1
+
+
+#Rows: 1000000 [-]
+Time: 2.565000 [s]
+Speed: 389863.547758 [rows/s]
+
+$ >perftest_wt_mem.exe 1000000 10000 2
+perftest_wt_me m  numrows_total=1000000 numrows_per_txn=10000 numthreads=2
+
+
+#Rows: 1000000 [-]
+Time: 1.496000 [s]
+Speed: 668449.197861 [rows/s]
+
+$ >perftest_wt_mem.exe 1000000 10000 4
+perftest_wt_me m  numrows_total=1000000 numrows_per_txn=10000 numthreads=4
+
+
+#Rows: 1000000 [-]
+Time: 1.035000 [s]
+Speed: 966183.574879 [rows/s]
+
+$ >perftest_wt_mem.exe 1000000 10000 8
+perftest_wt_me m  numrows_total=1000000 numrows_per_txn=10000 numthreads=8
+
+
+#Rows: 1000000 [-]
+Time: 0.934000 [s]
+Speed: 1070663.811563 [rows/s]
+
+$ >
+
+
+// =======================================================================================
+
+$ >perftest_kvwtmem_no_sqlite.exe 1000000 10000 1 lazy
+nperftest_kvwtmem_no_sqlite   numrows_total=1000000 numrows_per_txn=10000 numthreads=1 lazy_init=true
+
+
+#Rows: 1000000 [-]
+Time: 2.137000 [s]
+Speed: 467945.718297 [rows/s]
+
+$ >perftest_kvwtmem_no_sqlite.exe 1000000 10000 2 lazy
+nperftest_kvwtmem_no_sqlite   numrows_total=1000000 numrows_per_txn=10000 numthreads=2 lazy_init=true
+
+
+#Rows: 1000000 [-]
+Time: 1.333000 [s]
+Speed: 750187.546887 [rows/s]
+
+$ >perftest_kvwtmem_no_sqlite.exe 1000000 10000 4 lazy
+nperftest_kvwtmem_no_sqlite   numrows_total=1000000 numrows_per_txn=10000 numthreads=4 lazy_init=true
+
+
+#Rows: 1000000 [-]
+Time: 0.892000 [s]
+Speed: 1121076.233184 [rows/s]
+
+$ >perftest_kvwtmem_no_sqlite.exe 1000000 10000 8 lazy
+nperftest_kvwtmem_no_sqlite   numrows_total=1000000 numrows_per_txn=10000 numthreads=8 lazy_init=true
+
+
+#Rows: 1000000 [-]
+Time: 0.663000 [s]
+Speed: 1508295.625943 [rows/s]
+
+$ >
+
+// ===============================================================================
+
+$ >@perftest_kvwtmem_no_sqlite_overfluous_cursor.exe 1000000 10000 1 lazy
+nperftest_kvwtmem_no_sqlite_overfluous_cursor   numrows_total=1000000 numrows_per_txn=10000 numthreads=1 lazy_init=true
+
+
+#Rows: 1000000 [-]
+Time: 2.495000 [s]
+Speed: 400801.603206 [rows/s]
+
+$ >@perftest_kvwtmem_no_sqlite_overfluous_cursor.exe 1000000 10000 2 lazy
+nperftest_kvwtmem_no_sqlite_overfluous_cursor   numrows_total=1000000 numrows_per_txn=10000 numthreads=2 lazy_init=true
+
+
+#Rows: 1000000 [-]
+Time: 1.500000 [s]
+Speed: 666666.666667 [rows/s]
+
+$ >@perftest_kvwtmem_no_sqlite_overfluous_cursor.exe 1000000 10000 4 lazy
+nperftest_kvwtmem_no_sqlite_overfluous_cursor   numrows_total=1000000 numrows_per_txn=10000 numthreads=4 lazy_init=true
+
+
+#Rows: 1000000 [-]
+Time: 0.978000 [s]
+Speed: 1022494.887526 [rows/s]
+
+$ >@perftest_kvwtmem_no_sqlite_overfluous_cursor.exe 1000000 10000 8 lazy
+nperftest_kvwtmem_no_sqlite_overfluous_cursor   numrows_total=1000000 numrows_per_txn=10000 numthreads=8 lazy_init=true
+
+
+#Rows: 1000000 [-]
+Time: 0.609000 [s]
+Speed: 1642036.124795 [rows/s]
+
+$ >
+
+// ===================================================================================
+
+$ >perftest_kvwtmem.exe 1000000 10000 1 lazy
+perftest_kvwtmem   numrows_total=1000000 numrows_per_txn=10000 numthreads=1 lazy_init=true
+create table if not exists table06 (c_int integer PRIMARY KEY, c_num number, c_datetime text, c_char char(20), c_varchar varchar(20))
+SELECT COUNT(*) from table06
+0
+
+
+#Rows: 1000000 [-]
+Time: 2.534000 [s]
+Speed: 394632.991318 [rows/s]
+
+$ >perftest_kvwtmem.exe 1000000 10000 2 lazy
+perftest_kvwtmem   numrows_total=1000000 numrows_per_txn=10000 numthreads=2 lazy_init=true
+create table if not exists table06 (c_int integer PRIMARY KEY, c_num number, c_datetime text, c_char char(20), c_varchar varchar(20))
+SELECT COUNT(*) from table06
+0
+
+
+#Rows: 1000000 [-]
+Time: 1.809000 [s]
+Speed: 552791.597568 [rows/s]
+
+$ >perftest_kvwtmem.exe 1000000 10000 4 lazy
+perftest_kvwtmem   numrows_total=1000000 numrows_per_txn=10000 numthreads=4 lazy_init=true
+create table if not exists table06 (c_int integer PRIMARY KEY, c_num number, c_datetime text, c_char char(20), c_varchar varchar(20))
+SELECT COUNT(*) from table06
+0
+
+
+#Rows: 1000000 [-]
+Time: 0.944000 [s]
+Speed: 1059322.033898 [rows/s]
+
+$ >perftest_kvwtmem.exe 1000000 10000 8 lazy
+perftest_kvwtmem   numrows_total=1000000 numrows_per_txn=10000 numthreads=8 lazy_init=true
+create table if not exists table06 (c_int integer PRIMARY KEY, c_num number, c_datetime text, c_char char(20), c_varchar varchar(20))
+SELECT COUNT(*) from table06
+0
+
+
+#Rows: 1000000 [-]
+Time: 0.840000 [s]
+Speed: 1190476.190476 [rows/s]
+
+$ >
+
+// ================================================================================
+
+
+
+
+

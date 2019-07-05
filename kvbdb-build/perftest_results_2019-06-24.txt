@@ -1,0 +1,151 @@
+
+$ >perftest_bdb_api_mem.exe
+Usage:
+perftest_bdb_api_mem numrows_total numrows_per_txn numthreads
+
+$ >perftest_bdb_api_mem.exe 1000000 10000 1
+perftest_bdb_api_mem   numrows_total=1000000 numrows_per_txn=10000 numthreads=1
+
+
+#Rows: 1000000 [-]
+Time: 3.680000 [s]
+Speed: 271739.130435 [rows/s]
+
+$ >perftest_bdb_api_mem.exe 1000000 10000 2
+perftest_bdb_api_mem   numrows_total=1000000 numrows_per_txn=10000 numthreads=2
+
+
+#Rows: 1000000 [-]
+Time: 3.757000 [s]
+Speed: 266169.816343 [rows/s]
+
+$ >perftest_bdb_api_mem.exe 1000000 10000 4
+perftest_bdb_api_mem   numrows_total=1000000 numrows_per_txn=10000 numthreads=4
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+
+
+#Rows: 1000000 [-]
+Time: 3.883000 [s]
+Speed: 257532.835437 [rows/s]
+
+$ >perftest_bdb_api_mem.exe 1000000 10000 8
+perftest_bdb_api_mem   numrows_total=1000000 numrows_per_txn=10000 numthreads=8
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+BDB0068 DB_LOCK_DEADLOCK: Locker killed to resolve a deadlock
+
+
+#Rows: 1000000 [-]
+Time: 4.188000 [s]
+Speed: 238777.459408 [rows/s]
+
+$ >dir *.exe
+ Volume in drive D has no label.
+ Volume Serial Number is 2896-22A1
+
+ Directory of d:\user\piotr\imdb\SQLite\SQLite4\github\kvbdb-build\x64\Release
+
+06/24/2019  02:30 PM            20,480 perftest_bdb_api_mem.exe
+06/24/2019  02:30 PM           390,656 perftest_kvbdbmem.exe
+01/08/2019  08:57 PM           556,032 sqlite4.exe
+               3 File(s)        967,168 bytes
+               0 Dir(s)  15,725,051,904 bytes free
+
+$ >perftest_kvbdbmem.exe
+Usage:perftest_kvbdbmem numrows_total numrows_per_txn numthreads lazy|eager
+
+$ >perftest_kvbdbmem.exe 1000000 10000 1 lazy
+perftest_kvbdbmem   numrows_total=1000000 numrows_per_txn=10000 numthreads=1 lazy_init=true
+----------> fact_fun = 000007FEEC061040, &fact_fun = 000000000018F6D8
+create table if not exists table06 (c_int integer PRIMARY KEY, c_num number, c_datetime text, c_char char(20), c_varchar varchar(20))
+SELECT COUNT(*) from table06
+0
+SELECT COUNT(*) from table06
+1000000
+drop table table06
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+
+
+#Rows: 1000000 [-]
+Time: 4.055000 [s]
+Speed: 246609.124538 [rows/s]
+
+$ >perftest_kvbdbmem.exe 1000000 10000 2 lazy
+perftest_kvbdbmem   numrows_total=1000000 numrows_per_txn=10000 numthreads=2 lazy_init=true
+----------> fact_fun = 000007FEEC071040, &fact_fun = 000000000029F728
+create table if not exists table06 (c_int integer PRIMARY KEY, c_num number, c_datetime text, c_char char(20), c_varchar varchar(20))
+SELECT COUNT(*) from table06
+0
+SELECT COUNT(*) from table06
+1000000
+drop table table06
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+
+
+#Rows: 1000000 [-]
+Time: 4.640000 [s]
+Speed: 215517.241379 [rows/s]
+
+$ >perftest_kvbdbmem.exe 1000000 10000 4 lazy
+perftest_kvbdbmem   numrows_total=1000000 numrows_per_txn=10000 numthreads=4 lazy_init=true
+----------> fact_fun = 000007FEEC061040, &fact_fun = 00000000002CF778
+create table if not exists table06 (c_int integer PRIMARY KEY, c_num number, c_datetime text, c_char char(20), c_varchar varchar(20))
+SELECT COUNT(*) from table06
+0
+SELECT COUNT(*) from table06
+1000000
+drop table table06
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+
+
+#Rows: 1000000 [-]
+Time: 4.658000 [s]
+Speed: 214684.413912 [rows/s]
+
+$ >perftest_kvbdbmem.exe 1000000 10000 8 lazy
+perftest_kvbdbmem   numrows_total=1000000 numrows_per_txn=10000 numthreads=8 lazy_init=true
+----------> fact_fun = 000007FEEC071040, &fact_fun = 000000000025F758
+create table if not exists table06 (c_int integer PRIMARY KEY, c_num number, c_datetime text, c_char char(20), c_varchar varchar(20))
+SELECT COUNT(*) from table06
+0
+SELECT COUNT(*) from table06
+960000
+drop table table06
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+BDB2535 In-memory log buffer is full (an active transaction spans the buffer)
+
+
+#Rows: 1000000 [-]
+Time: 4.737000 [s]
+Speed: 211104.074309 [rows/s]
+
+$ >
+
+
